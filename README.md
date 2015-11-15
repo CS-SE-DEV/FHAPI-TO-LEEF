@@ -45,4 +45,4 @@ Since the FH API is a persistence streaming API there will commonly be issues th
 * The script will not start up if the pid file exists (this is to ensure multiple instances dont run concurrently)
 * A cron job is setup to run the FH_LEEF.py every 10 minutes [step 5 from deployment] This ensures that if the script crashes it will be restarted shortly after.  The aforemention controls ensure that the script will not be run if already active.
 
-__NOTE__: In the unlikely event the script has crashed and the pid file had not been removed, manually remove it from the file system to ensure the script can restart.  You can confirm whether this has occured by running the command _pid=$( cat FH_LEEF.pid ); ps -ef | grep $pid | grep -v grep_
+__NOTE__: In the unlikely event the script has crashed and the pid file had not been removed, manually remove it from the file system to ensure the script can restart.  You can confirm whether this has occured by running the command _pid=$( cat FH_LEEF.pid ); ps -ef | grep $pid | grep -v grep_  if there is no output this means the script is not currently running but the pid file still exists. 

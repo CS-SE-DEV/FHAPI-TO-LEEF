@@ -54,6 +54,7 @@ class StreamManager(object):
 
     def __init__(self):
         self.name = ""
+        signal.signal(signal.SIGINT, handle_ctrl_c)
 
     def list(self):
         streams = {}
@@ -75,7 +76,6 @@ class StreamManager(object):
         return streams
 
     def open(self, url, token):
-        signal.signal(signal.SIGINT, handle_ctrl_c)
         header = {'Authorization': 'Token %s' % token}
         try:
             req = requests.get(url + '&offset=' + config.offset, stream=True,

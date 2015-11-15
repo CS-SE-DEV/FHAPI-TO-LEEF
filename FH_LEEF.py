@@ -24,7 +24,6 @@ def main(argv):
     streams = connection.list()
     for url, token in streams.iteritems():
         connection.open(url, token)
-
     print "Script Execution Completed"
     shutdown()
 

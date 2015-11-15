@@ -7,11 +7,11 @@ A Python script that connects to falcon host's public streaming API and outputs 
 In order to run this program you will need a system with Python 2.7 installed.  Earlier versions may work, however this code has only been tested with Python 2.7.10. The program also uses the python requests library, this must be installed for the script to run successfully.  You can either download the application files directly through your browser and transfer them to your server, or clone the files using git. 
 
 1. Install requests by running either pip install requests or easy_install requests
-2. Run command git clone https://github.com/CS-SE-DEV/Falcon-Host-API-To-LEEF.git to download files to local system.
+2. Run command __git clone https://github.com/CS-SE-DEV/Falcon-Host-API-To-LEEF.git__ to download files to local system.
 3. Ensure FH_LEEF.py has executable permissions by running __chmod +x FH_LEEF.py__
 4. Update FH_LEEF.config file with the appropriate settings
-5. Modify /etc/crontab file and add the line /10 * * * * root /usr/bin/python /location/to/FH_LEEF.py.  You will need to substitute in the absolute path to the script on your system.  You can also run this under a user other than root if desired.
-6. Run script by typing ./FH_LEEF.py from application directory
+5. Modify __/etc/crontab__ file and add the line __/10 * * * * root /usr/bin/python /location/to/FH_LEEF.py__.  You will need to substitute in the absolute path to the script on your system.  You can also run this under a user other than root if desired.  If you wish to run the cron job at a seperate time interval, simply change the 10 to your desired number of minutes.
+6. Run script by typing __./FH_LEEF.py__ from application directory
 
 # Configuration
 

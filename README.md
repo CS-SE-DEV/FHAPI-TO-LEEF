@@ -1,6 +1,6 @@
 # FH API To LEEF
 
-A Python script that connects to falcon host's public streaming API and outputs into LEEF format to be consumed by QRadar SIEM.  Optionally the events can be convereted to LEEF and pushed via syslog to QRadar.
+A Python script that connects to falcon host's public streaming API and outputs into LEEF format to be consumed by QRadar SIEM.
 
 # Deployment
 
@@ -8,7 +8,7 @@ In order to run this program you will need a system with Python 2.7 installed.  
 
 1. Install requests by running either pip install requests or easy_install requests
 2. Run command git clone https://github.com/CS-SE-DEV/Falcon-Host-API-To-LEEF.git to download files to local system.
-3. Ensure FH_LEEF.py has executable permissions by running chmod +x FH_LEEF.py
+3. Ensure FH_LEEF.py has executable permissions by running __chmod +x FH_LEEF.py__
 4. Update FH_LEEF.config file with the appropriate settings
 5. Modify /etc/crontab file and add the line /10 * * * * root /usr/bin/python /location/to/FH_LEEF.py.  You will need to substitute in the absolute path to the script on your system.  You can also run this under a user other than root if desired.
 6. Run script by typing ./FH_LEEF.py from application directory
@@ -45,4 +45,4 @@ Since the FH API is a persistence streaming API there will commonly be issues th
 * The script will not start up if the pid file exists (this is to ensure multiple instances dont run concurrently)
 * A cron job is setup to run the FH_LEEF.py every 10 minutes [step 5 from deployment] This ensures that if the script crashes it will be restarted shortly after.  The aforemention controls ensure that the script will not be run if already active.
 
-__NOTE__: In the unlikely event the script has crashed and the pid file had not been removed, manually remove it from the file system to ensure the script can restart.  You can confirm whether this has occured by running the command _pid=$( cat FH_LEEF.pid ); ps -ef | grep $pid | grep -v grep_  if there is no output this means the script is not currently running but the pid file still exists. 
+__NOTE__: In the unlikely event the script has crashed and the pid file had not been removed, manually remove it from the file system to ensure the script can restart.  You can confirm whether this has occured by running the command __pid=$( cat FH_LEEF.pid ); ps -ef | grep $pid | grep -v grep__  if there is no output this means the script is not currently running but the pid file still exists. 

@@ -4,7 +4,13 @@ A Python script that connects to falcon host's public streaming API and outputs 
 
 # Deployment
 
-In order to run this program you will need a system with Python 2.7 installed.  You can either download the files directly from your browser and transfer them to your server, or clone the files using git.
+In order to run this program you will need a system with Python 2.X installed.  You can either download the files directly through your browser and transfer them to your server, or clone the files using git.  The program also uses the python requests library, this must be installed for the script to run successfully.  
+
+1.) Install requests by running either pip install requests or easy_install requests
+2.) Run command git clone https://github.com/CS-SE-DEV/Falcon-Host-API-To-LEEF.git to download files to local system.
+3.) Ensure FH_LEEF.py has executable permissions by running chmod +x FH_LEEF.py
+4.) Update FH_LEEF.config file with the appropriate settings
+5.) Run script by typing ./FH_LEEF.py
 
 # Configuration
 

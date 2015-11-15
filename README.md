@@ -1,4 +1,4 @@
-# Falcon Host API To LEEF
+# FH API To LEEF
 
 A Python script that connects to falcon host's public streaming API and outputs into LEEF format to be consumed by QRadar SIEM.  Optionally the events can be convereted to LEEF and pushed via syslog to QRadar.
 

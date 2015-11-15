@@ -69,6 +69,7 @@ class StreamManager(object):
                 streams[stream['dataFeedURL']] = stream['sessionToken']['token']
         except Exception, e:
             error = "Initial API Connection Failed: " + str(e)
+            print error
             Logger(error, config.error_log)
             shutdown()
         return streams

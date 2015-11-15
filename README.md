@@ -6,7 +6,7 @@ A Python script that connects to falcon host's public streaming API and outputs 
 
 The configuration file included title FH_LEEF.config contains the following settings which should be configured according to your environment and specific use cases.
 
-* api_url - This is the URL to the public falcon host API endpoint
+*__api_url__ - This is the URL to the public falcon host API endpoint
 * api_username - username of account with API access
 * api_password - password of account with API access
 * offset - this is automatically updated by the script in order to keep track of where to reconnect in the stream 

@@ -10,7 +10,8 @@ In order to run this program you will need a system with Python 2.7 installed.  
 2. Run command git clone https://github.com/CS-SE-DEV/Falcon-Host-API-To-LEEF.git to download files to local system.
 3. Ensure FH_LEEF.py has executable permissions by running chmod +x FH_LEEF.py
 4. Update FH_LEEF.config file with the appropriate settings
-5. Run script by typing ./FH_LEEF.py
+5. Modify /etc/crontab file and add the line /10 * * * * root /usr/bin/python /location/to/FH_LEEF.py.  You will need to substitute in the absolute path to the script on your system.  You can also run this under a user other than root if desired.
+6. Run script by typing ./FH_LEEF.py
 
 # Configuration
 
@@ -42,6 +43,6 @@ Since the FH API is a persistence streaming API there will commonly be issues th
 * When script starts up a file is written title FH_LEEF.pid containing the process ID (pid) of the executing script
 * If any exceptions occur the script releases open resources and removes the local pid file
 * The script will not start up if the pid file exists (this is to ensure multiple instances dont run concurrently)
-* A cron job is setup to run the FH_LEEF.py every 10 minutes.  This ensures that if the script crashes it will be restarted shortly after.  The aforemention controls ensure that the script will not be run if already active.
+* A cron job is setup to run the FH_LEEF.py every 10 minutes [step 5 from deployment] This ensures that if the script crashes it will be restarted shortly after.  The aforemention controls ensure that the script will not be run if already active.
 
 __NOTE__: In the unlikely event the script has crashed and the pid file had not been removed, manually remove it from the file system to ensure the script can restart.

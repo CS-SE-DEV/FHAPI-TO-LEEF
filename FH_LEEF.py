@@ -155,4 +155,5 @@ if __name__ == '__main__':
         sys.exit()
     else:
         file(pidfile, 'w').write(pid)
+        Logger("Script successfully initiated", config.activity_log)
     main(sys.argv[1:])

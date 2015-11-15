@@ -27,6 +27,6 @@ The file FH_LEEF.py is the primary python script to invoke the program.
 
 ## Mapping ##
 
-There are two modules apart of this project.  The Mapping module contains the data structures and deserializtion logic for all data models used in the script.  In the event a field title changes in the API or LEEF schema, simply update the information in the mapping file.  As new fields are to be captured, the mapping file will be updated.
+There are two modules apart of this project.  The Mapping module contains the data structures and deserializtion logic for all data models used in the script.  In the event a field titles change in the API or LEEF schema, simply update the information in the mapping file.  Including additional fields or adding new event types to capture/convert can be accomplished by updating the mapping file accordingly.
 
 

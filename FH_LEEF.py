@@ -9,7 +9,7 @@ from Mapping import Detection, LoginAuditEvent, ConfigFile
 
 
 # GLOBAL VARIABLES
-config = ConfigFile("FH_LEEF.config")
+config = ConfigFile(configpath)
 f = open('json.out', 'w') #Raw JSON output for debugging
 LEEF = open('LEEF.out', 'w') #Parsed LEEF output for debugging
 EventCount = 0
@@ -143,6 +143,7 @@ class StreamManager(object):
 
 if __name__ == '__main__':
     abs_cwd = os.path.dirname(os.path.abspath(__file__))
+    configpath = os.path.join(abs_cwd,"FH_LEEF.config")    
     pid = str(os.getpid())
     pidfile = os.path.join(abs_cwd, "FH_LEEF.pid")
 

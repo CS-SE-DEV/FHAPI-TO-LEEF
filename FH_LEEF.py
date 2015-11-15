@@ -147,7 +147,9 @@ if __name__ == '__main__':
     pidfile = os.path.join(abs_cwd, "FH_LEEF.pid")
 
     if os.path.isfile(pidfile):
-        print "%s already exists, exiting" % pidfile
+        error = "%s already exists, exiting" % pidfile
+        print error
+        Logger(error,config.error_log)
         sys.exit()
     else:
         file(pidfile, 'w').write(pid)

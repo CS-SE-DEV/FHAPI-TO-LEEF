@@ -31,10 +31,6 @@ The configuration file included title FH_LEEF.config contains the following sett
 * __error_log__ - path to local file for logging al script errors
 * __activity_log__ - path to local file for logging all script activity
 
-## Execution ##
-
-The file FH_LEEF.py is the primary python script to invoke the program.
-
 ## Mapping ##
 
 There are two modules apart of this project.  The Mapping module contains the data structures and deserializtion logic for all data models used in the script.  In the event a field titles change in the API or LEEF schema, simply update the information in the mapping file.  Including additional fields or adding new event types to capture/convert can be accomplished by updating the mapping file accordingly.

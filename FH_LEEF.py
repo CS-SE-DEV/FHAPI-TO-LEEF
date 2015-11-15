@@ -5,7 +5,7 @@ import requests
 import urllib2
 import requests.exceptions
 import time
-from Mapping import Detection, LoginAuditEvent
+from Mapping import Detection, LoginAuditEvent, ConfigFile
 
 
 # GLOBAL VARIABLES

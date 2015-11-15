@@ -11,7 +11,7 @@ In order to run this program you will need a system with Python 2.7 installed.  
 3. Ensure FH_LEEF.py has executable permissions by running chmod +x FH_LEEF.py
 4. Update FH_LEEF.config file with the appropriate settings
 5. Modify /etc/crontab file and add the line /10 * * * * root /usr/bin/python /location/to/FH_LEEF.py.  You will need to substitute in the absolute path to the script on your system.  You can also run this under a user other than root if desired.
-6. Run script by typing ./FH_LEEF.py
+6. Run script by typing ./FH_LEEF.py from application directory
 
 # Configuration
 

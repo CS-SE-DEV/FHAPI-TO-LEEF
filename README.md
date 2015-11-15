@@ -4,7 +4,7 @@ A Python script that connects to falcon host's public streaming API and outputs 
 
 # Deployment
 
-In order to run this program you will need a system with Python 2.X installed.  You can either download the files directly through your browser and transfer them to your server, or clone the files using git.  The program also uses the python requests library, this must be installed for the script to run successfully.  
+In order to run this program you will need a system with Python 2.7 installed.  Earlier versions may work, however this code has only been tested with Python 2.7.10. The program also uses the python requests library, this must be installed for the script to run successfully.  You can either download the application files directly through your browser and transfer them to your server, or clone the files using git. 
 
 1. Install requests by running either pip install requests or easy_install requests
 2. Run command git clone https://github.com/CS-SE-DEV/Falcon-Host-API-To-LEEF.git to download files to local system.
@@ -35,4 +35,13 @@ The configuration file included title FH_LEEF.config contains the following sett
 
 There are two modules apart of this project.  The Mapping module contains the data structures and deserializtion logic for all data models used in the script.  In the event a field titles change in the API or LEEF schema, simply update the information in the mapping file.  Including additional fields or adding new event types to capture/convert can be accomplished by updating the mapping file accordingly.
 
+## Persistence ##
 
+Since the FH API is a persistence streaming API there will commonly be issues that interrupt the connection and cause the script to crash.  This is gracefully handled within the code using the following mechanisms:
+
+* When script starts up a file is written title FH_LEEF.pid containing the process ID (pid) of the executing script
+* If any exceptions occur the script releases open resources and removes the local pid file
+* The script will not start up if the pid file exists (this is to ensure multiple instances dont run concurrently)
+* A cron job is setup to run the FH_LEEF.py every 10 minutes.  This ensures that if the script crashes it will be restarted shortly after.  The aforemention controls ensure that the script will not be run if already active.
+
+__NOTE__: In the unlikely event the script has crashed and the pid file had not been removed, manually remove it from the file system to ensure the script can restart.

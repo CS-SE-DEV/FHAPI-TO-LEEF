@@ -2,6 +2,10 @@
 
 A Python script that connects to falcon host's public streaming API and outputs into LEEF format to be consumed by QRadar SIEM.  Optionally the events can be convereted to LEEF and pushed via syslog to QRadar.
 
+# Deployment
+
+In order to run this program you will need a system with Python 2.7 installed.  You can either download the files directly from your browser and transfer them to your server, or clone the files using git.
+
 # Configuration
 
 The configuration file included title FH_LEEF.config contains the following settings which should be configured according to your environment and specific use cases.

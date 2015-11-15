@@ -40,7 +40,7 @@ def shutdown():
     LEEF.close()
     config.update(LastOffset)
     print "Shutting Down"
-    # os.unlink(pidfile)
+    os.unlink(pidfile)
     sys.exit(0)
 
 
@@ -69,8 +69,9 @@ class StreamManager(object):
             for stream in decoded['resources']:
                 streams[stream['dataFeedURL']] = stream['sessionToken']['token']
         except Exception, e:
-            
-            print str(e)
+            error = "Initial API Connection Failed: " + str(e)
+            Logger(error, config.error_log)
+            shutdown()
         return streams
 
     def open(self, url, token):
@@ -88,12 +89,14 @@ class StreamManager(object):
             error = "Connection Timeout Error: No events received in the last " + str(config.read_timeout) + " seconds"
             print error
             Logger(error, config.error_log)
+            shutdown()
 
         except Exception as e:
             config.update(LastOffset)
             error = "Error: " + str(e)
             print error
             Logger(error, config.error_log)
+            shutdown()
 
     def process(self, data):
         global buffer, f, EventCount, LastOffset
@@ -139,13 +142,13 @@ class StreamManager(object):
             EventCount += 1
 
 if __name__ == '__main__':
-    # abs_cwd = os.path.dirname(os.path.abspath(__file__))
-    # pid = str(os.getpid())
-    # pidfile = os.path.join(abs_cwd, "FH_LEEF.pid")
-    #
-    # if os.path.isfile(pidfile):
-    #     print "%s already exists, exiting" % pidfile
-    #     sys.exit()
-    # else:
-    #     file(pidfile, 'w').write(pid)
+    abs_cwd = os.path.dirname(os.path.abspath(__file__))
+    pid = str(os.getpid())
+    pidfile = os.path.join(abs_cwd, "FH_LEEF.pid")
+
+    if os.path.isfile(pidfile):
+        print "%s already exists, exiting" % pidfile
+        sys.exit()
+    else:
+        file(pidfile, 'w').write(pid)
     main(sys.argv[1:])

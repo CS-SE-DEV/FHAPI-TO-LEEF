@@ -139,13 +139,13 @@ class StreamManager(object):
             EventCount += 1
 
 if __name__ == '__main__':
-    # abs_cwd = os.path.dirname(os.path.abspath(__file__))
-    # pid = str(os.getpid())
-    # pidfile = os.path.join(abs_cwd, "FH_LEEF.pid")
-    #
-    # if os.path.isfile(pidfile):
-    #     print "%s already exists, exiting" % pidfile
-    #     sys.exit()
-    # else:
-    #     file(pidfile, 'w').write(pid)
-    main(sys.argv[1:])
+    abs_cwd = os.path.dirname(os.path.abspath(__file__))
+    pid = str(os.getpid())
+    pidfile = os.path.join(abs_cwd, "FH_LEEF.pid")
+    
+    if os.path.isfile(pidfile):
+        print "%s already exists, exiting" % pidfile
+        sys.exit()
+    else:
+        file(pidfile, 'w').write(pid)
+        main(sys.argv[1:])

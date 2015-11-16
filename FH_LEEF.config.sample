@@ -1,7 +1,7 @@
 [settings]
-api_url = 
-api_username = 
-api_password = 
+api_url =
+api_username =
+api_password =
 offset = 0
 syslog_host = 127.0.0.1
 syslog_port = 514
@@ -9,6 +9,6 @@ read_timeout = 30
 connection_timeout = 30
 send_over_syslog = false
 syslog_protocol = udp
-error_log = 
-activity_log = 
-
+error_log =
+activity_log =
+debug = false

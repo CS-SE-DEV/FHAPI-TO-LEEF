@@ -113,6 +113,7 @@ class ConfigFile(object):
         self.protocol = config.get('settings', 'syslog_protocol')
         self.error_log = config.get('settings', 'error_log')
         self.activity_log = config.get('settings', 'activity_log')
+        self.debug = config.getboolean('settings', 'debug')
 
     def update(self, lastoffset):
         config = ConfigParser.ConfigParser(allow_no_value=True)

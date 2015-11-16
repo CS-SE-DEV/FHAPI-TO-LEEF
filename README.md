@@ -29,6 +29,7 @@ The configuration file included title FH_LEEF.config contains the following sett
 * __connection_timeout__ - in seconds, amount of time to connect to API before timing out (default is 30)
 * __error_log__ - path to local file for logging al script errors
 * __activity_log__ - path to local file for logging all script activity
+* __debug__ - boolean to enable debugging logs (false by default)
 
 ## Mapping ##
 

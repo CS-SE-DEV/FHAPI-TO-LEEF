@@ -12,8 +12,9 @@ from Mapping import Detection, LoginAuditEvent, ConfigFile
 abs_cwd = os.path.dirname(os.path.abspath(__file__))
 configpath = os.path.join(abs_cwd, "FH_LEEF.config")
 config = ConfigFile(configpath)
-f = open('json.out', 'w') #Raw JSON output for debugging
-LEEF = open('LEEF.out', 'w') #Parsed LEEF output for debugging
+if config.debug:
+    f = open('json.out', 'w') #Raw JSON output for debugging
+    LEEF = open('LEEF.out', 'w') #Parsed LEEF output for debugging
 EventCount = 0
 LastOffset = 0
 buffer = ""
@@ -37,8 +38,9 @@ def handle_ctrl_c(signal, frame):
 
 def shutdown():
     global f, LEEF
-    f.close()
-    LEEF.close()
+    if config.debug:
+        f.close()
+        LEEF.close()
     config.update(LastOffset)
     print "Shutting Down"
     os.unlink(pidfile)
@@ -112,11 +114,13 @@ class StreamManager(object):
             if etype == 'DetectionSummaryEvent':
                 event = Detection()
                 event.deserialize(buffer)
-                Logger(" Loaded " + event.Type + " - " + event.Url, config.activity_log)
+                if config.debug:
+                    Logger(" Loaded " + event.Type + " - " + event.Url, config.activity_log)
             elif etype == 'LoginAuditEvent':
                 event = LoginAuditEvent()
                 event.deserialize(buffer)
-                Logger(" Loaded " + event.Type + " - " + event.UserIP + " - " + event.UserId, config.activity_log)
+                if config.debug:
+                    Logger(" Loaded " + event.Type + " - " + event.UserIP + " - " + event.UserId, config.activity_log)
             else:
                 return
             LastOffset = event.Offset
@@ -127,7 +131,8 @@ class StreamManager(object):
             line = header+bodyextension
             line = line.replace('\\', '\\\\')
             line = line.encode('utf-8').strip()
-            LEEF.write(line+'\n')
+            if config.debug:
+                LEEF.write(line+'\n')
 
             # SEND TO QRADAR VIA SYSLOG
             if config.send_over_syslog:
@@ -163,5 +168,7 @@ if __name__ == '__main__':
             Logger(error, config.error_log)
     else:
         file(pidfile, 'w').write(pid)
-        Logger("Script successfully initiated", config.activity_log)
+        print "Script successfully initiated"
+        if config.debug:
+            Logger("Script successfully initiated", config.activity_log)
     main(sys.argv[1:])

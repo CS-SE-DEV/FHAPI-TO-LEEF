@@ -40,9 +40,9 @@ There are two modules apart of this project.  The Mapping module contains the da
 
 Since the FH API is a persistence streaming API there will commonly be issues that interrupt the connection and cause the script to crash.  This is gracefully handled within the code using the following mechanisms:
 
-* When script starts up a file is written title FH_LEEF.pid containing the process ID (pid) of the executing script
-* If any exceptions occur the script releases open resources and removes the local pid file
-* The script will not start up if the pid file exists (this is to ensure multiple instances dont run concurrently)
+* When script starts up a file is written titled FH_LEEF.pid containing the process ID (pid) of the executing script
+* If any exceptions occur the script releases resources and removes the local pid file
+* The script will not start up if the pid file exists and process is running (this is to ensure multiple instances dont run concurrently)
 * A cron job is setup to run the FH_LEEF.py every 10 minutes [step 5 from deployment] This ensures that if the script crashes it will be restarted shortly after.  The aforemention controls ensure that the script will not be run if already active.
 
-__NOTE__: In the unlikely event the script has crashed and the pid file had not been removed, manually remove it from the file system to ensure the script can restart.  You can confirm whether this has occured by running the command __pid=$( cat FH_LEEF.pid ); ps -ef | grep $pid | grep -v grep__  if there is no output this means the script is not currently running but the pid file still exists. 
+__NOTE__: In the unlikely event the script has crashed and the pid file was not removed, the program will make sure the pid referenced in the pid is actually running.  If it is not, then it will restart the script and create a new pid file.  This is handled automatically, however if you wish to verify if this is occuring manually,run the command __pid=$( cat FH_LEEF.pid ); ps -ef | grep $pid | grep -v grep__  if there is no output this means the script is not currently running but the pid file still exists. 

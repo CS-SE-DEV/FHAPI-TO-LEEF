@@ -106,7 +106,7 @@ class ConfigFile(object):
         self.api_password = config.get('settings', 'api_password')
         self.offset = config.get('settings', 'offset')
         self.syslog_host = config.get('settings', 'syslog_host')
-        self.syslog_port = config.get('settings', 'syslog_port')
+        self.syslog_port = config.getint('settings', 'syslog_port')
         self.read_timeout = config.getint('settings', 'read_timeout')
         self.connection_timeout = config.getint('settings', 'connection_timeout')
         self.send_over_syslog = config.getboolean('settings', 'send_over_syslog')

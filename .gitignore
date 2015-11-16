@@ -1,1 +1,4 @@
 FH_LEEF.config
+*.out
+*.log
+*.pyc

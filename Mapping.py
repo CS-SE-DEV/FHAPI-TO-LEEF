@@ -74,7 +74,7 @@ class LoginAuditEvent(FalconEvent):
     def deserialize(self, data):
         decoded = json.loads(data)
         self.LoginTime = str(time.strftime('%Y-%m-%d %H:%M:%S',
-                                           time.gmtime(min(decoded['event']['LoginTime'], sys.maxint))))
+                                           time.gmtime(min(decoded['event']['LoginTime'] / 1000, sys.maxint))))
         self.Offset = decoded['metadata']['offset']
         self.UserId = decoded['event']['UserId']
         self.UserIP = decoded['event']['UserIp']

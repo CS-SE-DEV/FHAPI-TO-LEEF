@@ -4,7 +4,7 @@ import sys, json, base64, signal, socket, os, ConfigParser
 import requests
 import urllib2
 import requests.exceptions
-import time
+import time, commands
 from Mapping import Detection, LoginAuditEvent, ConfigFile
 
 
@@ -149,10 +149,18 @@ if __name__ == '__main__':
     pidfile = os.path.join(abs_cwd, "FH_LEEF.pid")
 
     if os.path.isfile(pidfile):
-        error = "%s already exists, exiting" % pidfile
-        print error
-        Logger(error,config.error_log)
-        sys.exit()
+        pidfileval = commands.getoutput("cat " + pidfile)
+        status = commands.getoutput("if ps -p " + pidfileval + " /dev/null;then echo true;else echo false;fi")
+        if status == "true":
+            error = "Process is already running under PID %s, exiting" % pidfileval
+            print error
+            Logger(error, config.error_log)
+            sys.exit()
+        elif status == "false":
+            error = "PID file exists but process not running, creating new file"
+            print error
+            file(pidfile, 'w').write(pid)
+            Logger(error, config.error_log)
     else:
         file(pidfile, 'w').write(pid)
         Logger("Script successfully initiated", config.activity_log)

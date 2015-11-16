@@ -108,7 +108,8 @@ class StreamManager(object):
         buffer = ""
         buffer += data
         if data.endswith('\r\n') and buffer.strip():
-            f.write(buffer)
+            if config.debug:
+                f.write(buffer)
             decoded = json.loads(buffer)
             etype = decoded['metadata']['eventType']
             if etype == 'DetectionSummaryEvent':

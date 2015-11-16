@@ -150,7 +150,7 @@ if __name__ == '__main__':
 
     if os.path.isfile(pidfile):
         pidfileval = commands.getoutput("cat " + pidfile)
-        status = commands.getoutput("if ps -p " + pidfileval + " /dev/null;then echo true;else echo false;fi")
+        status = commands.getoutput("if ps -p " + pidfileval + " >/dev/null;then echo true;else echo false;fi")
         if status == "true":
             error = "Process is already running under PID %s, exiting" % pidfileval
             print error
